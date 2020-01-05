@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DesktopL.Properties
+namespace DesktopLDDM.Properties
 {
 
 

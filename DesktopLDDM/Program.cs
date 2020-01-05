@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DesktopL
+namespace DesktopLDDM
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace DesktopL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Courses());
+            Application.Run(new CreateCourse());
         }
     }
 }

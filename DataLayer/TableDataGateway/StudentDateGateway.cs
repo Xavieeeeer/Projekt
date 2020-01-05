@@ -101,13 +101,13 @@ namespace DataLayer.TableDataGateway
             while (reader.Read())
             {
                 Student student = new Student();
-                int i= -1;
-                student.studentID = reader.GetInt32(++i);
-                student.firstName = reader.GetString(++i);
-                student.lastnName = reader.GetString(++i);
-                student.phoneNumber = reader.GetInt32(++i);
-                student.email = reader.GetString(++i);
-                student.birhtDate = reader.GetDateTime(++i);
+                int j= -1;
+                student.studentID = reader.GetInt32(++j);
+                student.firstName = reader.GetString(++j);
+                student.lastnName = reader.GetString(++j);
+                student.phoneNumber = reader.GetInt32(++j);
+                student.email = reader.GetString(++j);
+                student.birhtDate = reader.GetDateTime(++j);
 
                 students.Add(student);
             }

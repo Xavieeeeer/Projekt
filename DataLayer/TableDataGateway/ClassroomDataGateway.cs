@@ -32,5 +32,19 @@ namespace DataLayer.TableDataGateway
                 return table;
             }
         }
+        public static DataTable FindByID(SqlConnection connection,int classroom_id)
+        {
+            var dataTable = new DataTable();
+            using (SqlCommand command = new SqlCommand("select first_name, last_name from Lector_DDM where lector_id = @idL; ", connection))
+            {
+                command.Parameters.AddWithValue("@idL", classroom_id);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    dataTable.Load(reader);
+                }
+            }
+            return dataTable;
+
+        }
     }
 }

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4819204C-CCAB-48E8-8715-558F9E99FB88}</ProjectGuid>
+    <ProjectGuid>{C6A99B49-CBAC-431E-AAFF-33E3BB4EDD03}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DesktopL</RootNamespace>
-    <AssemblyName>DesktopL</AssemblyName>
+    <RootNamespace>DesktopLDDM</RootNamespace>
+    <AssemblyName>DesktopLDDM</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -49,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Courses.cs">
+    <Compile Include="Course.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Courses.Designer.cs">
-      <DependentUpon>Courses.cs</DependentUpon>
+    <Compile Include="Course.Designer.cs">
+      <DependentUpon>Course.cs</DependentUpon>
     </Compile>
     <Compile Include="CreateCourse.cs">
       <SubType>Form</SubType>
@@ -61,13 +61,22 @@
     <Compile Include="CreateCourse.Designer.cs">
       <DependentUpon>CreateCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Find.Designer.cs">
+      <DependentUpon>Find.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Courses.resx">
-      <DependentUpon>Courses.cs</DependentUpon>
+    <EmbeddedResource Include="Course.resx">
+      <DependentUpon>Course.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateCourse.resx">
       <DependentUpon>CreateCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Find.resx">
+      <DependentUpon>Find.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,13 +102,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessL\BusinessL.csproj">
+      <Project>{c9a2d4f0-5953-485b-83bb-6a87b68aafd4}</Project>
+      <Name>BusinessL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">
       <Project>{2db63cc4-693b-48f8-be65-1a026bc8d0c1}</Project>
       <Name>DataLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DomainLayer\DomainLayer.csproj">
-      <Project>{eeeed1a1-20a1-40f8-b0e8-ef252c4a8a2c}</Project>
-      <Name>DomainLayer</Name>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{95c019a7-cad6-4386-9808-8c0a4417e458}</Project>
+      <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

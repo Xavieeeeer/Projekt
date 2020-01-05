@@ -7,12 +7,15 @@ namespace DataLayer.TableDataGateway
 {
     public class LectorDataGateway : TableDataGateway<LectorDataGateway>
     {
-        public new static DataTable FindByID(SqlConnection connection, int lector_id)
+        public new static DataTable FindByID(SqlConnection connection, int course_id)
         {
             var dataTable = new DataTable();
-            using (SqlCommand command = new SqlCommand("SELECT l.first_name,l.last_name from Lector_DDM l  WHERE l.lector_id = @lector_id;", connection))
+            using (SqlCommand command = new SqlCommand("SELECT l.first_name,l.last_name FROM Lector_DDM l +" +
+                                                        "JOIN Work_DDM w on w.lector_lector_id = l.lector_id + " +
+                                                        "JOIN Course_DDM c ON c.course_id = w.course_course_id  " +
+                                                        "WHERE c.course_id = @course_id;", connection))
             {
-                command.Parameters.AddWithValue("@lector_id", lector_id);
+                command.Parameters.AddWithValue("@course_id", course_id);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     
@@ -24,7 +27,7 @@ namespace DataLayer.TableDataGateway
         public new static DataTable Find(SqlConnection connection)
         {
             var dataTable = new DataTable();
-            using (SqlCommand command = new SqlCommand("SELECT * from Lector_DDM;", connection))
+            using (SqlCommand command = new SqlCommand("SELECT last_name from Lector_DDM;", connection))
             {
                 
                 using (SqlDataReader reader = command.ExecuteReader())

@@ -7,22 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DataLayer.TableDataGateway;
-using DataLayer;
-
-using DDM;
 using System.Data.SqlClient;
-
-namespace DesktopL
+using DataLayer;
+using DataLayer.TableDataGateway;
+namespace DesktopLDDM
 {
-    public partial class Courses : Form
+    public partial class Course : Form
     {
-        DataTable courses = null;
-        public Courses()
+        public Course()
         {
             InitializeComponent();
             updateCourses();
         }
+
+        private DataTable courses;
+
         private void updateCourses(string x = null)
         {
             SqlConnection connection = DBConnector.GetInstance().GetConnection();
@@ -32,7 +31,7 @@ namespace DesktopL
             foreach (DataRow row in courses.Rows)
             {
                 level = row["difficulty"].ToString();
-                switch(level)
+                switch (level)
                 {
                     case "Z":
                         level = "Beginner";
@@ -42,24 +41,31 @@ namespace DesktopL
                         break;
                     case "E":
                         level = "Expert";
-                        break; 
-            
+                        break;
+
                 }
-                lector = LectorDataGateway.FindByID(connection,(int)row["lector_idlector"]);
+                lector = LectorDataGateway.FindByID(connection,(int)row["course_id"]);
                 string[] r = { row["course_name"].ToString(), lector.Rows[0]["first_name"].ToString() + " " + lector.Rows[0]["last_name"].ToString(), level };
                 listView1.Items.Add(new ListViewItem(r));
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void CreateCourse_Click(object sender, EventArgs e)
         {
             this.Hide();
             CreateCourse cc = new CreateCourse();
+            cc.ShowDialog();
+            this.Close();
+        }
+
+        private void FindCourse_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Find cc = new Find();
             cc.ShowDialog();
             this.Close();
         }

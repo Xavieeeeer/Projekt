@@ -10,6 +10,19 @@ namespace DataLayer.TableDataGateway
 {
     public class CourseDataGateway : TableDataGateway<CourseDataGateway>
     {
+        public static DataTable FindCourse(SqlConnection connection, string name)
+        {
+            var dataTable = new DataTable();
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Course_DDM where course_name = @name;", connection))
+            {
+                command.Parameters.AddWithValue("@name", name);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    dataTable.Load(reader);
+                }
+            }
+            return dataTable;
+        }
         public new static DataTable Find(SqlConnection connection)
         {
             var dataTable = new DataTable();
@@ -22,6 +35,19 @@ namespace DataLayer.TableDataGateway
             }
             return dataTable;
         }
+        public static void Insert(SqlConnection connection,int course_id,string c_name, char c_level, int c_capacity, int c_class)
+        {
+            string sql = "exec addCourse " +  "@course_id" + c_name + ", @level, "  + ", @capacity, @class;";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("course_id", course_id);
+                command.Parameters.AddWithValue("@level", c_level);
+                command.Parameters.AddWithValue("@capacity", c_capacity);
+                command.Parameters.AddWithValue("@class", c_class);
+                command.ExecuteNonQuery();
+            }
+        }
+
         public static DataTable RegistredCourses(SqlConnection connection, int? student_id = null)
         {
             var dataTable = new DataTable();
@@ -83,6 +109,7 @@ namespace DataLayer.TableDataGateway
             }
             return true;
         }
+        
         public static bool ClassroomIsValid(int c_capacity, int c_class, SqlConnection connection)
         {
 
@@ -98,6 +125,37 @@ namespace DataLayer.TableDataGateway
                 }
             }
             return true;
+        }
+
+        public static Collection<Course> Select(SqlConnection connection)
+        {
+            Collection<Course> courses = null;
+            string sql = "SELECT c.course_id,c.course_name,c.capacity,c.Classroom_classroom_id FROM Course_DDM c;";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+               using(SqlDataReader reader = command.ExecuteReader())
+                {
+                    courses = Read(reader);
+                }
+            }
+            return courses;
+        }
+        private static Collection<Course> Read(SqlDataReader reader)
+        {
+            var courses = new Collection<Course>();
+            while (reader.Read())
+            {
+                Course course = new Course();
+                int j = -1;
+                course.courseId = reader.GetInt32(++j);
+                course.courseName = reader.GetString(++j);
+                course.capacity = reader.GetInt32(++j);
+                course.classroomID = reader.GetInt32(++j);
+                
+
+                courses.Add(course);
+            }
+            return courses;
         }
 
     }
