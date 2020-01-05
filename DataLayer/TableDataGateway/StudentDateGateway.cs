@@ -36,6 +36,7 @@ namespace DataLayer.TableDataGateway
                 return table;
             }
         }
+        // Finding students by giving parametrs 
         public static Collection<Student> SelectBy(SqlConnection connection,int? studentID=null,string first_name=null,string last_name=null,int? phone_number=null,string email=null,DateTime? birth_date = null)
         {
             Collection<Student> students = null;
@@ -100,7 +101,7 @@ namespace DataLayer.TableDataGateway
             while (reader.Read())
             {
                 Student student = new Student();
-                int i = -1;
+                int i= -1;
                 student.studentID = reader.GetInt32(++i);
                 student.firstName = reader.GetString(++i);
                 student.lastnName = reader.GetString(++i);
