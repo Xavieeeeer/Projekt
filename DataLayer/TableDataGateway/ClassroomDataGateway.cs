@@ -36,9 +36,9 @@ namespace DataLayer.TableDataGateway
         public static DataTable FindByID(SqlConnection connection,int classroom_id)
         {
             var dataTable = new DataTable();
-            using (SqlCommand command = new SqlCommand("select first_name, last_name from Lector_DDM where lector_id = @idL; ", connection))
+            using (SqlCommand command = new SqlCommand("select floor_number, room_number from Classroom_DDM where classroom_id = @classroom_id; ", connection))
             {
-                command.Parameters.AddWithValue("@idL", classroom_id);
+                command.Parameters.AddWithValue("@classroom_id", classroom_id);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     dataTable.Load(reader);

@@ -27,7 +27,7 @@ namespace DesktopLDDM
             SqlConnection connection = DBConnector.GetInstance().GetConnection();
             courses = CourseDataGateway.Find(connection);
             string level;
-            DataTable lector;
+            DataTable classrooms;
             foreach (DataRow row in courses.Rows)
             {
                 level = row["difficulty"].ToString();
@@ -46,8 +46,8 @@ namespace DesktopLDDM
                         level = "Begginer";
                         break;
                 }
-                lector = LectorDataGateway.FindByID(connection,(int)row["course_id"]);
-                string[] r = { row["course_name"].ToString(), lector.Rows[0]["first_name"].ToString() + " " + lector.Rows[0]["last_name"].ToString(), level };
+                classrooms = ClasroomDataGateway.FindByID(connection, (int)row["Classroom_classroom_id"]);
+                string[] r = { row["course_name"].ToString(), "rekonstrukce:" , level };
                 listView1.Items.Add(new ListViewItem(r));
             }
         }

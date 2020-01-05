@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
-            this.first_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.last_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.course_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.floorAndRoom = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.level = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CreateCourse = new System.Windows.Forms.Button();
             this.FindCourse = new System.Windows.Forms.Button();
@@ -39,8 +39,8 @@
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.first_name,
-            this.last_name,
+            this.course_name,
+            this.floorAndRoom,
             this.level});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(215, 95);
@@ -51,15 +51,15 @@
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // first_name
+            // course_name
             // 
-            this.first_name.Text = "first_name";
-            this.first_name.Width = 80;
+            this.course_name.Text = "course_name";
+            this.course_name.Width = 80;
             // 
-            // last_name
+            // floorAndRoom
             // 
-            this.last_name.Text = "last_name";
-            this.last_name.Width = 80;
+            this.floorAndRoom.Text = "floorAndRoom";
+            this.floorAndRoom.Width = 80;
             // 
             // level
             // 
@@ -103,8 +103,8 @@
         #endregion
 
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader first_name;
-        private System.Windows.Forms.ColumnHeader last_name;
+        private System.Windows.Forms.ColumnHeader course_name;
+        private System.Windows.Forms.ColumnHeader floorAndRoom;
         private System.Windows.Forms.ColumnHeader level;
         private System.Windows.Forms.Button CreateCourse;
         private System.Windows.Forms.Button FindCourse;

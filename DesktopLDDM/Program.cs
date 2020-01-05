@@ -16,7 +16,7 @@ namespace DesktopLDDM
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CreateCourse());
+            Application.Run(new Course());
         }
     }
 }

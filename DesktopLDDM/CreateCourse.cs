@@ -95,5 +95,13 @@ namespace DesktopLDDM
                 cr.ShowDialog();
             }
         }
+
+        private void back_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Course cc = new Course();
+            cc.ShowDialog();
+            this.Hide();
+        }
     }
 }
