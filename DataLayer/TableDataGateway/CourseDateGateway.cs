@@ -37,7 +37,7 @@ namespace DataLayer.TableDataGateway
         }
         public static void Insert(SqlConnection connection,int course_id,string c_name, char c_level, int c_capacity, int c_class)
         {
-            string sql = "exec addCourse " +  "@course_id" + c_name + ", @level, "  + ", @capacity, @class;";
+            string sql = "exec addCourse " +  "@course_id, " + c_name + ", @level"  + ", @capacity" + ", @class;";
             using (SqlCommand command = new SqlCommand(sql, connection))
             {
                 command.Parameters.AddWithValue("course_id", course_id);
@@ -46,6 +46,21 @@ namespace DataLayer.TableDataGateway
                 command.Parameters.AddWithValue("@class", c_class);
                 command.ExecuteNonQuery();
             }
+        }
+        public static bool CourseIsValid(SqlConnection connection,int course_id,string c_name, char c_level)
+        {
+            string sql = "select * from Course_DDM where course_id = @course_id and  course_name = '" + c_name + "' and difficulty = @level";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("course_id", course_id);
+                command.Parameters.AddWithValue("@level", c_level);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                        return false;
+                }
+            }
+            return true;
         }
 
         public static DataTable RegistredCourses(SqlConnection connection, int? student_id = null)

@@ -42,7 +42,9 @@ namespace DesktopLDDM
                     case "E":
                         level = "Expert";
                         break;
-
+                    default:
+                        level = "Begginer";
+                        break;
                 }
                 lector = LectorDataGateway.FindByID(connection,(int)row["course_id"]);
                 string[] r = { row["course_name"].ToString(), lector.Rows[0]["first_name"].ToString() + " " + lector.Rows[0]["last_name"].ToString(), level };

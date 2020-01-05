@@ -8,11 +8,12 @@ namespace DataLayer.TableDataGateway
 {
     public class ClasroomDataGateway : TableDataGateway<ClasroomDataGateway>
     {
-        public new static DataTable Find(SqlConnection connection)
+        public new static DataTable Find(SqlConnection connection,int capacity)
         {
             var dataTable = new DataTable();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Classroom_DDM;", connection))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Classroom_DDM where capacity > @capacity;", connection))
             {
+                command.Parameters.AddWithValue("@capacity", capacity);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     dataTable.Load(reader);

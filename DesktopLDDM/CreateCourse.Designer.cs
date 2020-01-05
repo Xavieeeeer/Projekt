@@ -43,6 +43,8 @@
             this.lector = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.course_id = new System.Windows.Forms.TextBox();
+            this.CourseValid = new System.Windows.Forms.Button();
+            this.ValidClass = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -142,6 +144,10 @@
             // level
             // 
             this.level.FormattingEnabled = true;
+            this.level.Items.AddRange(new object[] {
+            "Z",
+            "P",
+            "E"});
             this.level.Location = new System.Drawing.Point(333, 146);
             this.level.Name = "level";
             this.level.Size = new System.Drawing.Size(143, 21);
@@ -171,11 +177,33 @@
             this.course_id.Size = new System.Drawing.Size(143, 20);
             this.course_id.TabIndex = 16;
             // 
+            // CourseValid
+            // 
+            this.CourseValid.Location = new System.Drawing.Point(564, 110);
+            this.CourseValid.Name = "CourseValid";
+            this.CourseValid.Size = new System.Drawing.Size(29, 23);
+            this.CourseValid.TabIndex = 17;
+            this.CourseValid.Text = "x";
+            this.CourseValid.UseVisualStyleBackColor = true;
+            this.CourseValid.Click += new System.EventHandler(this.CourseValid_Click);
+            // 
+            // ValidClass
+            // 
+            this.ValidClass.Location = new System.Drawing.Point(564, 211);
+            this.ValidClass.Name = "ValidClass";
+            this.ValidClass.Size = new System.Drawing.Size(29, 23);
+            this.ValidClass.TabIndex = 18;
+            this.ValidClass.Text = "x";
+            this.ValidClass.UseVisualStyleBackColor = true;
+            this.ValidClass.Click += new System.EventHandler(this.ValidClass_Click);
+            // 
             // CreateCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ValidClass);
+            this.Controls.Add(this.CourseValid);
             this.Controls.Add(this.course_id);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lector);
@@ -215,6 +243,8 @@
         private System.Windows.Forms.ComboBox lector;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox course_id;
+        private System.Windows.Forms.Button CourseValid;
+        private System.Windows.Forms.Button ValidClass;
     }
 }
 
